@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  height:100vh;
+  background:linear-gradient(135deg,#ff7eb3,#ff4f81,#1a001a);
+  font-family:'Great Vibes',cursive;
+  color:white;
+  overflow:hidden;
+}
+
+/* pages */
+.page{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  opacity:0;
+  transform:scale(.95);
+  transition:opacity .8s ease, transform .8s ease;
+  pointer-events:none;
+}
+
+.page.active{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
+}
+
+.text{
+  font-size:clamp(2.4rem,6vw,4rem);
+  text-shadow:0 0 25px rgba(255,150,200,.9);
+  padding:20px;
+}
+
+/* button */
+.btn{
+  margin-top:30px;
+  padding:14px 38px;
+  border:none;
+  border-radius:40px;
+  font-size:1.4rem;
+  color:white;
+  background:linear-gradient(135deg,#ff3d7a,#ff77a8);
+  box-shadow:0 8px 25px rgba(0,0,0,.4);
+  cursor:pointer;
+  transition:.25s;
+}
+.btn:hover{transform:scale(1.08);}
+
+/* gift image */
+.gift-img{
+  width:min(340px,85vw);
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(255,120,160,.8);
+  margin-top:20px;
+}
+
+/* rose floating */
+.rose{
+  position:absolute;
+  font-size:26px;
+  animation:float 4s linear forwards;
+  pointer-events:none;
+}
+
+@keyframes float{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-120vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="careless.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <div class="text">
+    Since you became my Valentine,<br>
+    lemme give u a gift 😌💝
+  </div>
+  <button class="btn" onclick="go(1)">Open Gift 🎁</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+ <div class="text">Here is your rose baby gurll 😏😘😘💋</div>
+  <img src="gift.jpg" class="gift-img">
+  <button class="btn" onclick="go(2)">Next ➜</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <div class="text">
+    Since u came today,<br>
+    come tomorrow too 😏🌹
+  </div>
+</div>
+
+<script>
+
+/* navigation */
+function go(n){
+  document.getElementById("p"+n).classList.remove("active");
+  document.getElementById("p"+(n+1)).classList.add("active");
+
+  // start song from beginning when gift opens
+  if(n==1){
+    const music=document.getElementById("music");
+    music.currentTime=0;
+    music.play();
+  }
+}
+
+/* floating roses */
+function rose(){
+  const r=document.createElement("div");
+  r.className="rose";
+  r.innerHTML="🌹";
+  r.style.left=Math.random()*100+"vw";
+  r.style.bottom="-20px";
+  r.style.fontSize=(20+Math.random()*18)+"px";
+  document.body.appendChild(r);
+  setTimeout(()=>r.remove(),4000);
+}
+setInterval(rose,600);
+
+</script>
+</body>
+</html>
