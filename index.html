@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Future 💞</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  height:100vh;
+  background:linear-gradient(135deg,#ff7eb3,#ff4f81,#1a001a);
+  font-family:'Great Vibes',cursive;
+  color:white;
+  overflow:hidden;
+}
+
+.page{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  opacity:0;
+  transform:scale(.95);
+  transition:.7s;
+  pointer-events:none;
+}
+
+.page.active{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
+}
+
+.text{
+  font-size:clamp(2.2rem,6vw,3.8rem);
+  padding:20px;
+  text-shadow:0 0 25px rgba(255,170,200,.9);
+}
+
+.btn{
+  margin-top:25px;
+  padding:12px 36px;
+  border:none;
+  border-radius:40px;
+  font-size:1.3rem;
+  background:linear-gradient(135deg,#ff3d7a,#ff77a8);
+  color:white;
+  cursor:pointer;
+  transition:.25s;
+}
+.btn:hover{transform:scale(1.1);}
+
+.photo{
+  width:min(380px,85vw);
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(255,140,180,.8);
+  margin-top:15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- MUSIC -->
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="surprise.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+
+<div class="page active" id="p1">
+  <div class="text">Will you marry me Ms Parvathy? 💍</div>
+  <button class="btn" onclick="yes()">YES 💕</button>
+  <button class="btn" id="noBtn">NO 😒</button>
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page" id="p2">
+  <div class="text">goood gurlllll 😌</div>
+  <div class="text" style="font-size:2rem">click to see our future</div>
+  <button class="btn" onclick="go(2)">Next ➜</button>
+</div>
+
+<!-- WEDDING -->
+
+<div class="page" id="p3">
+  <div class="text">this our wedding 💐</div>
+  <img src="wedding.jpg" class="photo">
+  <button class="btn" onclick="go(3)">Next ➜</button>
+</div>
+
+<!-- HONEYMOON -->
+
+<div class="page" id="p4">
+  <div class="text">our honeymoon in kashmir 🫣🫣🫣🤤🥸</div>
+  <img src="kashmir.jpg" class="photo">
+  <button class="btn" onclick="go(4)">Next ➜</button>
+</div>
+
+<!-- BABY -->
+
+<div class="page" id="p5">
+  <div class="text">This the result of our honeymoon 😝</div>
+  <img src="baby.jpg" class="photo">
+  <button class="btn" onclick="go(5)">Next ➜</button>
+</div>
+
+<!-- PROMISE -->
+
+<div class="page" id="p6">
+  <div class="text">where is my u promised yesterday 🤔🧐🥸🙂‍↔️</div>
+  <button class="btn" onclick="go(6)">Next ➜</button>
+</div>
+
+<!-- FINAL -->
+
+<div class="page" id="p7">
+  <div class="text">next surprise tomorrow 💖</div>
+</div>
+
+<script>
+
+/* navigation */
+function yes(){ go(1); }
+
+function go(n){
+  document.getElementById("p"+n).classList.remove("active");
+  document.getElementById("p"+(n+1)).classList.add("active");
+}
+
+/* running NO button */
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseenter",()=>{
+  const x=Math.random()*200-100;
+  const y=Math.random()*150-75;
+  noBtn.style.transform=`translate(${x}px,${y}px)`;
+});
+
+/* start music on first interaction */
+const music=document.getElementById("bgMusic");
+let started=false;
+
+function startMusic(){
+  if(!started){
+    music.currentTime=0;
+    music.play();
+    started=true;
+  }
+}
+
+document.addEventListener("click",startMusic);
+document.addEventListener("touchstart",startMusic);
+
+</script>
+
+</body>
+</html>
