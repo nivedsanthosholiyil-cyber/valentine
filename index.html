@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Feb 8 Surprise 💝</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{height:100vh;background:radial-gradient(circle at top,#ff5f9e,#1a001a);font-family:'Great Vibes',cursive;color:white;overflow:hidden;}
+.page{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;opacity:0;transform:scale(.95);transition:.9s;pointer-events:none;}
+.page.active{opacity:1;transform:scale(1);pointer-events:auto;}
+.text{font-size:clamp(2.5rem,6vw,4.5rem);text-shadow:0 0 20px #ff8fc4;}
+.small{font-size:1.6rem;margin-top:10px;opacity:.9;}
+button{margin-top:30px;background:linear-gradient(135deg,#ff4fa3,#ff1f7a);border:none;padding:14px 40px;border-radius:40px;font-size:1.4rem;color:white;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:.3s;}
+button:hover{transform:scale(1.1);} 
+img.big{width:min(85vw,500px);border-radius:25px;box-shadow:0 0 40px rgba(255,150,200,.9);margin-top:20px;}
+.float{position:absolute;font-size:28px;animation:floatUp 2.5s ease-out forwards;pointer-events:none;}
+@keyframes floatUp{from{transform:translateY(0) scale(.8);opacity:1;}to{transform:translateY(-120px) scale(1.4);opacity:0;}}
+</style>
+</head>
+<body>
+<audio id="music" autoplay loop>
+  <source src="vathilil.mp3" type="audio/mpeg">
+</audio>
+
+<div class="page active" id="p1">
+  <div class="text">Special day – February 8 💖</div>
+  <div class="small">Click to begin...</div>
+  <button onclick="go(1)">Start ➜</button>
+</div>
+
+<div class="page" id="p2">
+  <div class="text">This is our wedding 💍</div>
+  <img src="wedding.jpg" class="big">
+  <button onclick="go(2)">Next ➜</button>
+</div>
+
+<div class="page" id="p3">
+  <div class="text">our honey moon in kashmir 🫣🫣🫣🤤🥸</div>
+  <img src="kashmir.jpg" class="big">
+  <button onclick="go(3)">Next ➜</button>
+</div>
+
+<div class="page" id="p4">
+  <div class="text">This the result of our honeymoon 😝</div>
+  <img src="baby.jpg" class="big">
+  <button onclick="go(4)">Next ➜</button>
+</div>
+
+<div class="page" id="p5">
+  <div class="text">where is my u promised yesterday 🤔🧐🥸🙂‍↔️</div>
+  <button onclick="go(5)">Next ➜</button>
+</div>
+
+<div class="page" id="p6">
+  <div class="text">next surprise tomorrow 💌</div>
+  <div class="small">Song: Vathilil 🎶</div>
+</div>
+
+<script>
+function go(n){document.getElementById("p"+n).classList.remove("active");document.getElementById("p"+(n+1)).classList.add("active");document.getElementById("music").play();spawnLove();}
+function spawnLove(){for(let i=0;i<7;i++){const el=document.createElement("div");el.className="float";el.innerHTML=Math.random()>.5?"💖":"💋";el.style.left=Math.random()*100+"vw";el.style.top=Math.random()*100+"vh";document.body.appendChild(el);setTimeout(()=>el.remove(),2500);}}
+</script>
+</body>
+</html>
